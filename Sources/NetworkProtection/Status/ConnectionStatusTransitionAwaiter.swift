@@ -46,10 +46,11 @@ public final class ConnectionStatusTransitionAwaiter {
 
     public enum TransitionError: LocalizedError {
         case timeout
+        case transitionCountExceeded
 
         public var errorDescription: String? {
             switch self {
-            case .timeout:
+            case .timeout, .transitionCountExceeded:
                 return "The connection attempt timed out, please try again"
             }
         }
@@ -121,7 +122,7 @@ public final class ConnectionStatusTransitionAwaiter {
             if targetStatus.acceptsIntermediateStatus(currentStatus) {
                 // Since we'll allow this to extend, we wanna put a limit to that
                 guard count < 4 else {
-                    throw TransitionError.timeout
+                    throw TransitionError.transitionCountExceeded
                 }
 
                 count += 1
