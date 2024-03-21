@@ -74,7 +74,7 @@ extension OSLog {
         }
 
         public var wrappedValue: OSLog {
-            var isEnabled = OSLog.enabledLoggingCategories.contains(category)
+            var isEnabled = true // OSLog.enabledLoggingCategories.contains(category)
 #if CI
             isEnabled = true
 #elseif DEBUG
