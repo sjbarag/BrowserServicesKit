@@ -74,7 +74,7 @@ public final class VPNSettings {
         case production
         case staging
 
-        public static var `default`: SelectedEnvironment = .production
+        public static var `default`: SelectedEnvironment = .staging
 
         public var endpointURL: URL {
             switch self {
